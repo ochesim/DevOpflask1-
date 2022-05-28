@@ -1,3 +1,7 @@
+from os import environ as env
+from dotenv import load_dotenv
+load_dotenv()
+
 """
 A simple Flask app to greet visitors.
 """
@@ -12,7 +16,10 @@ Greetings
 """
 @app.route("/")
 def hello():
-    return "Hello, World!"
+    if 'CUSTOM_STRING' in os.environ:
+        return '<p>' +env['CUSTOM_STRING'] + '</p>'
+    else:
+        return 'Hello World'
 
 """
 Return sample JSON data
